@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Librarian login · UniLib</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css"></head>
+<body data-page="adminlogin"><header id="nav"></header>
+<main class="wrap"><div class="auth card"><form id="authForm" data-mode="admin" novalidate><h2>Librarian login</h2><p class="mute small">Librarian accounts are created by the system administrator. They cannot be registered here.</p><label for="identifier">Email</label><input id="identifier" name="identifier" type="text" required autocomplete="username"><p class="err" data-err="identifier"></p><label for="password">Password</label><input id="password" name="password" type="password" required autocomplete="current-password"><p class="err" data-err="password"></p><p class="err" id="formErr"></p><button class="btn" type="submit" style="width:100%;margin-top:1rem">Log in as librarian</button></form><p class="center small mute" style="margin-top:1rem"><a href="/login.html">Student login</a></p></div></main>
+<footer>UniLib · Smart University Library Management System · Web Technology project · All book records are sample demo data</footer>
+<div id="toasts" aria-live="polite"></div>
+<script src="/js/app.js"></script><script src="/js/auth.js"></script></body></html>

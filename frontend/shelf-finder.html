@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shelf Finder · UniLib</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css"></head>
+<body data-page="shelf"><header id="nav"></header>
+<main class="wrap"><h1 style="font-size:2rem">Smart Shelf &amp; Book Finder</h1><p class="mute">Search for a book to see its rack, category and availability. Tap a rack on the map to list what is on it. The bar under each rack shows how many titles are available.</p>
+<div class="toolbar"><input id="sq" type="search" placeholder="Search by title, author or ISBN" aria-label="Search books"><label class="toggle"><input type="checkbox" id="sav">Find available books</label><button class="btn ghost sm" id="clearRack">Clear rack filter</button></div>
+<h2 id="rcount" class="small mute" style="font-size:1rem"></h2><div id="results"></div>
+<section class="sec"><h2>Library map</h2><div id="map"><div class="spin"></div></div></section>
+<section class="sec"><h2>Recently added</h2><div class="books" id="recent"></div></section>
+<section class="sec"><h2>Popular books</h2><div class="books" id="popular"></div></section>
+<section class="sec" id="recSection" hidden><h2>Suggested for you</h2><p class="mute small">Pick your interests. Suggestions combine them with what you have borrowed before. They are only suggestions.</p><div class="chips" id="chips"></div><p class="small mute" id="recNote"></p><div class="books" id="recs"></div></section></main>
+<footer>UniLib · Smart University Library Management System · Web Technology project · All book records are sample demo data</footer>
+<div id="toasts" aria-live="polite"></div>
+<script src="/js/app.js"></script><script src="/js/shelf.js"></script></body></html>
