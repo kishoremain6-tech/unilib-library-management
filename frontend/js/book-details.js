@@ -1,5 +1,11 @@
 ready.then(async () => {
   const id = new URLSearchParams(location.search).get('id'); const box = $('#detail');
+  const params = new URLSearchParams(location.search);
+  const continueBorrowing = params.get('borrow') === '1';
+  if (continueBorrowing) {
+    params.delete('borrow');
+    history.replaceState(null, '', `${location.pathname}?${params}`);
+  }
   async function load() {
     try {
       const { book: b } = await api('/books/' + encodeURIComponent(id)); const av = b.availableCopies > 0;
@@ -11,6 +17,7 @@ ready.then(async () => {
       <dt>Shelf location</dt><dd class="rack">${esc(b.shelf)}</dd><dt>Copies</dt><dd>${b.availableCopies} of ${b.totalCopies} available</dd>
       <dt>Status</dt><dd><span class="pill ${av ? 'ok' : 'bad'}">${b.status}</span></dd></dl>
       <div style="display:flex;gap:.6rem;flex-wrap:wrap"><button class="btn" data-borrow="${esc(b._id)}" ${av ? '' : 'disabled'}>Borrow this book</button><a class="btn ghost" href="/shelf-finder.html?shelf=${encodeURIComponent(b.shelf.split('-').slice(0, 2).join('-'))}">Show rack on shelf map</a></div></div></div>`;
+      if (continueBorrowing && window.ME?.role === 'student') openBorrow(b);
     } catch (e) { box.innerHTML = empty(e.status === 404 || e.status === 400 ? 'That book could not be found.' : e.message); }
   }
   window.onBorrowed = load; load();
