@@ -54,16 +54,16 @@ npm start
 
 **Demo student** (only if you used `--demo-student`): `demo.student@unilib.test` / `Student@123`. Delete this account before any real use.
 
-## 3. Publish a public website (Render + MongoDB Atlas)
+## 3. Publish a public website (Railway + MongoDB Atlas)
 
-The included `render.yaml` configures Render to serve the frontend and API from one public URL. A MongoDB Atlas database is still required; do not put database credentials in source code.
+The included `Dockerfile` packages the frontend and API together for Railway or another Docker host. A MongoDB Atlas database is still required; do not put database credentials in source code.
 
 1. Push this project to a GitHub repository. Keep it private unless you intend to publish the source code.
-2. Create a MongoDB Atlas cluster and database user. In Atlas Network Access, add your computer's IP so you can initialize the database. Render free services may not have fixed outbound IPs; if needed, allow `0.0.0.0/0` and protect access with a strong database password and a database user limited to this app's database.
+2. Create a MongoDB Atlas cluster and database user. In Atlas Network Access, add your computer's IP so you can initialize the database. Allow the host's outbound IPs to connect; if they are not fixed, allow `0.0.0.0/0` and protect access with a strong database password and a database user limited to this app's database.
 3. In Atlas, copy the Node.js connection string for the `unilib` database. Replace the username and password placeholders; URL-encode special characters in the password.
 4. Before deployment, copy `backend/.env.example` to `backend/.env` and set `MONGODB_URI` to the Atlas connection string. From `backend`, run `npm install`, `npm run seed`, and `npm run create-admin`. This initializes sample books and a librarian without creating a shared demo-student account. Students can register through the public website.
-5. In Render, choose **New → Blueprint**, connect the repository, and deploy. Render reads `render.yaml` and prompts for `MONGODB_URI`; paste the same Atlas connection string. It generates `JWT_SECRET` automatically.
-6. Open the public `onrender.com` URL shown in the Render dashboard. The service sleeps on some free hosting plans, so the first request after inactivity may take a little while.
+5. In Railway, create a project from the GitHub repository. Railway detects the root `Dockerfile` and builds the app. Add `MONGODB_URI` and `JWT_SECRET` as service variables; generate a long random `JWT_SECRET` and keep both values private. Set `NODE_ENV=production`. Railway provides `PORT` automatically.
+6. In the Railway service settings, generate a public domain, then open that URL. The same URL serves the website and its API.
 
 Keep `.env` and all database credentials private. Before using this with real students, replace demo records and review the deployment's privacy, backups, and hosting costs.
 
